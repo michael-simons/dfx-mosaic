@@ -106,6 +106,8 @@ public class Mosaic {
 			.parallel()
 			.collect(RGBAverage::new, RGBAverage::accept, RGBAverage::combine)
 			.value();
+		// That is a reference to a stored procedure, one parameter filled from
+		// a column, the other one from a single, constant value computed above.
 		final Field<Double> cie94ColorDistance = DSL.function("f_CIE94_color_distance", Double.class, IMAGES.AVERAGE_COLOR, val(tileAvgColor));
 		final int tileX = i, tileY = j;
 		final List<Integer> exclude = tiles.stream()
