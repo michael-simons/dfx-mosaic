@@ -6,7 +6,6 @@ import de.dailyfratze.mosaic.images.Tile;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -96,7 +95,6 @@ public class ApplicationFX extends Application {
 		if (!change.wasAdded()) {
 		    continue;
 		}
-		Random rr  = new Random();
 		// Grab all added tiles and map them to image nodes
 		final List<Node> newNodes
 			= change.getAddedSubList()
