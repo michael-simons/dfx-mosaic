@@ -6,6 +6,7 @@ import de.dailyfratze.mosaic.images.Tile;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -84,14 +85,18 @@ public class ApplicationFX extends Application {
 
 	final double angle2 = Math.PI;
 
+	// The year i started dailyfratze.de
+	final int baseYear = 2005;
+	
 	// Create an observable list, used as a target for the mosaic generator.
 	final ObservableList<Tile> tiles = FXCollections.observableArrayList();
-	// Observe it
+	// Observe it	
 	tiles.addListener((Change<? extends Tile> change) -> {
 	    while (change.next()) {
 		if (!change.wasAdded()) {
 		    continue;
 		}
+		Random rr  = new Random();
 		// Grab all added tiles and map them to image nodes
 		final List<Node> newNodes
 			= change.getAddedSubList()
@@ -99,7 +104,7 @@ public class ApplicationFX extends Application {
 			    // Compute spherical projection
 			    double angle1 = Math.toRadians(ringEndDeg - tile.getX() * angleInc);
 			    double x = r * Math.sin(angle1) * Math.cos(angle2);
-			    double z = r * Math.cos(angle1);
+			    double z = r * Math.cos(angle1) - (tile.getTakenOn().getYear() - baseYear) * 100;
 			    
 			    final Node rv = createImageView(tile.getAbsoluteFilename());
 			    rv.setTranslateX(x);
