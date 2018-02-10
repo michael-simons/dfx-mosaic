@@ -1,6 +1,6 @@
 package de.dailyfratze.mosaic.gui;
 
-import com.sun.javafx.Utils;
+import com.sun.javafx.util.Utils;
 import javafx.animation.AnimationTimer;
 import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.property.ReadOnlyObjectWrapper;
